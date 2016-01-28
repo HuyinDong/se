@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="./lib/angular-material/angular-material.css">
+<div  layout="column" ng-cloak class="md-inline-form">
+    <md-content layout-padding>
+                <div layout="row"  id = "tableHeader">
+                    <div flex = "10">
+                        <h3 class="md-title" style = "margin-top:35px">Select Options:</h3>
+                    </div>
+                    <md-input-container class="md-block" id = "type" flex="15">
+                        <label>Chart Type</label>
+                        <md-select ng-model="object.type">
+                            <md-option  value="table">
+                                Table
+                            </md-option>
+                            <md-option  value="tree">
+                                Tree
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="15" id = "vendorname">
+                        <label>Vendor Name</label>
+                        <input  id = "vendor" ng-model ="object.selectedVendor" list="vendorList">
+                        <datalist id="vendorList" >
+                            <option ng-repeat="v in object.vendor" value="{{v}}">
+                        </datalist>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="15" id = "productname">
+                        <label>Product Name</label>
+                        <md-select ng-model="object.selected">
+                            <md-option ng-repeat="product in object.products track by product.prod_name" value="{{product.prod_name}}">
+                                {{product.prod_name}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="15" id = "versionnumber">
+                    <label>Version Number(Optional)</label>
+                    <input id = "filter" ng-model ="object.filter" list = "versionNumList">
+                    <datalist id="versionNumList" >
+                        <option ng-repeat="v in object.versionNum track by v.vers_num" value="{{v.vers_num}}">
+                    </datalist>
+                        </md-input-container>
+                    <md-button flex = "10" class="md-raised md-primary" ng-click="getTreeChart()" style = "width:120px;height:30px;margin-top:20px" id = "gettree">Get Exploits</md-button>
+                </div>
+       <div ui-view></div>
+    </md-content>
+
+</div>
+

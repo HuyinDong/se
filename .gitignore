@@ -1,0 +1,13 @@
+#dependencies
+node_modules
+
+#client dependencies
+
+lib
+
+#idea
+
+.idea
+
+#mysql
+

@@ -1,0 +1,41 @@
+
+<md-dialog aria-label="Exploits">
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Exploits of {{cve}}:</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px; ">
+           <div layout = "column">
+                <div flex>
+                    <p>CVE : {{cveInfo[0].cvename}}</p>
+                </div>
+               <div flex>
+                   <p>Publiched : {{cveInfo[0].published | date : format : "MM/dd/yyyy"}}</p>
+               </div>
+               <div flex>
+                   <p>Severity : {{cveInfo[0].severity}}</p>
+               </div>
+               <div flex>
+                   <p>Description : {{cveInfo[0].descript}}</p>
+               </div>
+           </div>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label={{x.row.source}} ng-repeat="x  in info">
+
+                        <h3 class="md-display-2">{{x.row.title}}</h3>
+                        <p>Description : {{x.row.description}}</p>
+                            <pre class="brush: c;gutter:true;auto-links: false, smart-tabs: true;;" style = "padding :15px">
+            {{x.content}}
+        </pre>
+
+                </md-tab>
+
+            </md-tabs>
+        </md-dialog-content>
+    </form>
+    <md-progress-circular md-mode="indeterminate" ng-show="loading"
+                          style = "position:absolute;right:50%;top:50%;"></md-progress-circular>
+</md-dialog>
