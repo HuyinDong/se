@@ -24,6 +24,15 @@ exports.getCVEDetail = function(req,res,next){
     call(connection,sql,req,res,next);
 };
 
+/****************************Exploits************************************/
+
+exports.getExploits = function(req,res,next){
+    var sql = "select * from smartexploits limit 0,100";
+    sql = mysql.format(sql);
+    call(connection,sql,req,res,next);
+};
+
+
 /***************************For Table***********************************/
 
 exports.getVendor = function(req,res,next){

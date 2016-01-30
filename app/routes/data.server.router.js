@@ -12,6 +12,12 @@ module.exports = function(app){
     app.get('/data/cves',data.getCVEs);
     app.get('/data/cves/:cve',data.getCVEDetail);
 
+    /****************************exploits***************************/
+
+    app.get('/data/exploits',data.getExploits);
+
+
+
     /*******************table and tree chart************************/
     app.get('/data/vendor/like/:likeVendorName',data.getVendor);
     app.get('/data/vendor/:vendor',data.getProductFromVendor);
