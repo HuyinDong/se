@@ -9,14 +9,25 @@ module.exports = function(app){
         res.render('test', {});
     });
     /****************************cve********************************/
+
     app.get('/data/cves',data.getCVEs);
     app.get('/data/cves/:cve',data.getCVEDetail);
+    app.get('/data/cves/search/:keywords',data.getSearchCVEs);
 
     /****************************exploits***************************/
 
     app.get('/data/exploits',data.getExploits);
     app.get('/data/exploits/search/:source/:keywords',data.getSearchExploits);
 
+    /****************************vendors*****************************/
+
+    app.get('/data/vendors',data.getVendors);
+    app.get('/data/vendors/search/:keywords',data.getSearchVendors);
+
+    /****************************vendors*****************************/
+
+    app.get('/data/References',data.getReferences);
+    app.get('/data/References/search/:keywords',data.getSearchReferences);
 
     /*******************table and tree chart************************/
     app.get('/data/vendor/like/:likeVendorName',data.getVendor);

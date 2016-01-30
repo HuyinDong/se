@@ -15,22 +15,14 @@
                         <fieldset>
                             <div class="control-group">
                                 <div class="controls">
-                                    <input type="text" class="span6"  ng-model="keywords" name="keywords" placeholder="CVE" >
-                                    <button class="btn blue" type="submit" name='stype' value='vuls'><i class="fa fa-search"></i>
-                                        Search CVEs </button>
-
+                                    <input type="text" class="span6 "id="keywords" name="keywords" placeholder="CVEs" ng-model="keywords"  >
+                                    <button class="btn blue" ng-click = "searchCVEs()" name='stype'><i class="fa fa-search"></i> Search CVEs </button>
                                 </div>
                             </div>
                         </fieldset>
                     </form>
                 </div>
             </div><!--/row-->
-
-
-
-
-
-
 
 
             <div class="clearfix"></div>
@@ -42,7 +34,7 @@
                     </div>
                     <div class="box-content">
 
-                        <table datatable="ng" class="row-border hover">
+                        <table datatable="ng" class="table table-striped table-bordered bootstrap-datatable datatable">
 
                             <thead>
                             <tr>

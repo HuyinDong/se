@@ -15,6 +15,16 @@ cves.controller('cvesController',function($scope,$http){
         $scope.total = data.data.length;
     });
 
+    $scope.searchCVEs = function(){
+        if($scope.keywords == ""){
+            alert("Can't be null");
+        }else {
+            $http.get('/data/cves/search/' + $scope.keywords).then(function (data) {
+                $scope.cves = data.data;
+            });
+
+        }
+    };
 
 });
 

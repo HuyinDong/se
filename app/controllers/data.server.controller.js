@@ -23,6 +23,14 @@ exports.getCVEDetail = function(req,res,next){
     call(connection,sql,req,res,next);
 };
 
+exports.getSearchCVEs = function(req,res,next){
+    var sql = "select * from CVEs where cvename like ? or descript like ? limit 0,100";
+    var keywords = "%"+req.params["keywords"]+"%";
+    var inserts = [keywords,keywords];
+    sql = mysql.format(sql,inserts);
+    call(connection,sql,req,res,next);
+};
+
 /****************************Exploits************************************/
 
 exports.getExploits = function(req,res,next){
@@ -40,6 +48,38 @@ exports.getSearchExploits = function(req,res,next){
     call(connection,sql,req,res,next);
 };
 
+/****************************Vendors************************************/
+
+exports.getVendors = function(req,res,next){
+    var sql = "select * from vendor limit 0,100";
+    sql = mysql.format(sql);
+    call(connection,sql,req,res,next);
+};
+
+exports.getSearchVendors = function(req,res,next){
+    var sql = "select * from vendor where vendor_name like ? or prod_name like ? limit 0,100";
+    var keywords = "%"+req.params["keywords"]+"%";
+    var inserts = [keywords,keywords];
+    sql = mysql.format(sql,inserts);
+    call(connection,sql,req,res,next);
+};
+
+
+/****************************References************************************/
+
+exports.getReferences = function(req,res,next){
+    var sql = "select * from refs limit 0,100";
+    sql = mysql.format(sql);
+    call(connection,sql,req,res,next);
+};
+
+exports.getSearchReferences = function(req,res,next){
+    var sql = "select * from refs where rtitle like ? or rsource like ? or rurl like ? limit 0,100";
+    var keywords = "%"+req.params["keywords"]+"%";
+    var inserts = [keywords,keywords,keywords];
+    sql = mysql.format(sql,inserts);
+    call(connection,sql,req,res,next);
+};
 
 /***************************For Table***********************************/
 
