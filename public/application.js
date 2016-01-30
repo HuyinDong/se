@@ -6,6 +6,8 @@
 angular.module('mainApplicationModule',
     [
         'ui.router',
+        'datatables',
+            'ngResource',
         'sidebar',
         'index',
         'cves',

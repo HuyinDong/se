@@ -10,15 +10,17 @@ secharts.controller("sechartsController",function($scope,$http,$rootScope,$state
     $scope.object.products = '';
     var times = 0;
     var excuted = false;
+
+
     $(document).on('keypress', '#vendor', getVendorInfo);
+    console.log("a");
     function getVendorInfo() {
         if($('#vendor').val().length > 2 && !excuted){
-            $http.get('/data/vendor/like/'+$('#vendor').val()).then(function (data) {
+            $http.get('data/vendor/like/'+$('#vendor').val()).success(function (data) {
                 console.log(data);
                 $scope.object.vendor = _.map(data.data, function (d) {
                     return d.vendor_name;
                 });
-                console.log($scope.object.vendor);
                 excuted = true;
             });
         }else if($('#vendor').val().length < 2){
@@ -44,7 +46,7 @@ secharts.controller("sechartsController",function($scope,$http,$rootScope,$state
     };
     $(document).on('change', '#vendor', getVulnInfo);
 
-
+        console.log();
         $scope.getTreeChart = function() {
 
                 /*    $("#type").animate({
@@ -68,6 +70,7 @@ secharts.controller("sechartsController",function($scope,$http,$rootScope,$state
                         top: '-382'
                     });
                 */
+                $rootScope.prevent = false;
                 if ($scope.object.selectedVendor == null) {
                     showAlert();
                 } else if($scope.object.type == 'tree'){
