@@ -15,7 +15,7 @@ module.exports = function(app){
     /****************************exploits***************************/
 
     app.get('/data/exploits',data.getExploits);
-
+    app.get('/data/exploits/search/:source/:keywords',data.getSearchExploits);
 
 
     /*******************table and tree chart************************/

@@ -17,7 +17,6 @@ exports.getCVEs = function(req,res,next){
 };
 
 exports.getCVEDetail = function(req,res,next){
-    console.log("cveDetail");
     var sql = "select * from CVEs where `cvename` = ?";
     var inserts = [req.params["cve"]];
     sql = mysql.format(sql,inserts);
@@ -32,15 +31,22 @@ exports.getExploits = function(req,res,next){
     call(connection,sql,req,res,next);
 };
 
+exports.getSearchExploits = function(req,res,next){
+    var sql = "select * from smartexploits where source = ? and title like ? or description like ? or ereferences like ? limit 0,100";
+    var keywords = "%"+req.params["keywords"]+"%";
+    var source = req.params["source"]=="empty"?"":req.params["source"];
+    var inserts = [source,keywords,keywords,keywords];
+    sql = mysql.format(sql,inserts);
+    call(connection,sql,req,res,next);
+};
+
 
 /***************************For Table***********************************/
 
 exports.getVendor = function(req,res,next){
-    console.log("likeVendor");
     var sql = "select distinct(vendor_name) from vendor where `vendor_name` LIKE ?";
     var inserts = ["%"+req.params["likeVendorName"]+"%"];
     sql = mysql.format(sql,inserts);
-    console.log(sql);
     call(connection,sql,req,res,next);
 };
 
@@ -49,7 +55,6 @@ exports.getProductFromVendor = function(req,res,next){
     var sql = "select distinct(prod_name) from vendor where vendor_name = ?";
     var inserts = [req.params["vendor"]];
     sql = mysql.format(sql,inserts);
-    console.log(sql);
     call(connection,sql,req,res,next);
 };
 
